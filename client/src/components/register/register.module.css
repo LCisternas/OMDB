@@ -1,0 +1,112 @@
+.registerContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url('../../images/fondo1.jpg');
+  background-size: contain;
+}
+.registerContainer:before {
+	content:'';
+	position: absolute;
+  top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0,0,0,0.6);
+}
+.registerContainer form {
+  background: black;
+  color: #E50914;
+  width: 25%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  opacity: 0.75;
+  border-radius: 5px;
+}
+.registerTitle {
+  height: 10%;
+  font-size: 28px;
+  color: #E50914;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.registerInput {
+  height: 15%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.registerButton {
+  height: 15%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.registerContainer label {
+  margin: 10px 20px;
+  font-size: 19px;
+  font-weight: 600;
+  color: #E50914;
+}
+.registerContainer input {
+  height: 40%;
+  margin: 10px 20px;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 2px solid #E50914;
+  background-color: transparent;
+  color: white;
+  outline: none;
+}
+.registerContainer button {
+  width: 90%;
+  height: 45%;
+  border-radius: 5px;
+  border: 2px solid#E50914;
+  background-color: transparent;
+  color: #E50914;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+.registerContainer button:hover {
+  background-color: #E50914;
+  color: white;
+}
+.registerContainer a {
+  text-decoration: none;
+  color: #E50914;
+}
+.registerContainer a:hover {
+  text-decoration: underline;
+}
+@media all and (max-width: 600px) {
+  .registerContainer form {
+    width: 80%;
+    height: 98%;
+  }
+  .registerContainer label {
+    margin: 2px 20px;
+  }
+  .registerContainer input {
+    height: 40%;
+    margin: 2px 20px;
+  }
+  .registerContainer button {
+    height: 50%;
+  }
+  .registerTitle {
+    font-size: 28px;
+  }
+}
+@media all and (min-width: 601px) and (max-width: 1200px) {
+  .registerContainer form {
+    width: 70%;
+  }
+}
