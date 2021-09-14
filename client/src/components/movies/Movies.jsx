@@ -1,9 +1,16 @@
 import React from 'react';
+import style from './movies.module.css';
+import Navbar from '../navbar/Navbar';
 
 const Movies = () => {
   return (
-    <div>
-      <h1>Movies</h1>
+    <div className={style.principalContainer}>
+      <div className={style.principalNavbar}>
+        <Navbar />
+      </div>
+      <div className={style.principalMovies}>
+        <h1>Movies</h1>
+      </div>
     </div>
   );
 }

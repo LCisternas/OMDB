@@ -1,0 +1,61 @@
+.navbarContainer {
+  display: flex;
+  height: 100%;
+  color: white;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: red 2px solid;
+}
+.navbarLogo {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin: 0px 20px;
+}
+.navbarSearch {
+  height: 100%;
+}
+.navbarSearch form {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.navbarSearch input {
+  width: 350px;
+  height: 30%;
+  margin: 0px 10px;
+  text-align: center;
+  border-radius: 5px;
+  border: 2px solid black;
+}
+.navbarSearch button {
+  width: 50px;
+  height: 35%;
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 21px;
+  cursor: pointer;
+}
+.navbarAccount {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin: 0px 20px;
+}
+.navbarAccount button {
+  height: 35%;
+  width: 50px;
+  background: transparent;
+  color: white;
+  border: none;
+  font-size: 28px;
+  margin: 0px 10px;
+  cursor: pointer;
+}
+.navbarAccount a {
+  text-decoration: none;
+  color: white;
+  font-size: 28px;
+  margin: 0px 10px;
+}

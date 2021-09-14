@@ -1,0 +1,10 @@
+.principalContainer {
+  height: 100vh;
+  background-color: black;
+}
+.principalNavbar {
+  height: 10%;
+}
+.principalMovies {
+  color: white;
+}
