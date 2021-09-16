@@ -11,7 +11,7 @@ import { Provider } from 'react-redux';
 function App() {
   return (
     <BrowserRouter>
-      <Provider store={store} >
+      <Provider store={store}>
         <div className='main'>
           <Switch>
             <Route exact path='/' component={Login} />

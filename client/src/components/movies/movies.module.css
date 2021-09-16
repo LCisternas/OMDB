@@ -7,4 +7,43 @@
 }
 .principalMovies {
   color: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: black;
+  border-top: 2px solid red;
+}
+.singularMovie {
+  width: 400px;
+  height: 650px;
+  display: flex;
+  flex-direction: column;
+  margin: 15px 10px;
+}
+.singularTitle {
+  height: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 15px;
+}
+.singularImg {
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.singularImg img {
+  height: 100%;
+}
+.singularOptions {
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.singularOptions button {
+  height: 60%;
+  width: 80%;
 }

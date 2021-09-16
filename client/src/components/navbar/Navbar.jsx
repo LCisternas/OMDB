@@ -13,12 +13,12 @@ const Navbar = () => {
           <input 
             placeholder='Busca una pelicula'
           />
-          <button><i class="fas fa-search"></i></button>
+          <button><i className="fas fa-search"></i></button>
         </form>
       </div>
       <div className={style.navbarAccount}>
-        <Link> <i class="far fa-user-circle"></i> </Link>
-        <button><i class="fas fa-sign-out-alt"></i></button>
+        <Link to='!#'> <i className="far fa-user-circle"></i> </Link>
+        <button><i className="fas fa-sign-out-alt"></i></button>
       </div>
     </div>
   );
