@@ -1,0 +1,10 @@
+.favoritesContainer {
+  height: 100vh;
+  background-color: black;
+}
+.favoritesNavbar {
+  height: 10%;
+}
+.favoritesContent {
+  color: white;
+}
