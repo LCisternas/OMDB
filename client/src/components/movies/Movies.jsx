@@ -2,25 +2,35 @@ import React, { useEffect } from 'react';
 import style from './movies.module.css';
 import Navbar from '../navbar/Navbar';
 import { useDispatch, useSelector } from 'react-redux';
-import { cargaDePeliculasDefault } from '../../redux/actions/moviesAction'
+import { cargaDePeliculasDefault, busquedaExitosa } from '../../redux/actions/moviesAction'
 import SingularMovie from './SingularMovie';
+import axios from 'axios';
 
 const Movies = () => {
 
   const dispatch = useDispatch();
-  
+  const enviarPelicula = (pelicula) => dispatch( busquedaExitosa(pelicula) )
+  const peliculaEspecificada = useSelector( state => state.movies.peliculaEspecifica )
+
   useEffect(() => {
-    // const cargaPaginaInicio = async () => {
-    //   const cargarPeliculas = () => dispatch( cargaDePeliculasDefault() );
-    //   await cargarPeliculas()
-    // }
-    // cargaPaginaInicio()
-    const cargarPeliculas = () => dispatch( cargaDePeliculasDefault() );
-    cargarPeliculas()
-  }, [])
+    if(peliculaEspecificada !== '') {
+      const buscarPelicula = async () => {
+        try {
+          const result = await axios.get(`http://www.omdbapi.com/?s=${peliculaEspecificada}&apikey=c4ff2a47`);
+          enviarPelicula(result.data.Search)
+        } catch (error) {
+          console.log(error)
+        }
+      }
+      buscarPelicula()
+    }
+    if(peliculaEspecificada === '') {
+      const cargarPeliculas = () => dispatch( cargaDePeliculasDefault() );
+      cargarPeliculas()
+    }
+  }, [peliculaEspecificada])
 
   const listadoPeliculas = useSelector( state => state.movies.peliculas )
-  console.log(listadoPeliculas)
 
   return (
     <div className={style.principalContainer}>
