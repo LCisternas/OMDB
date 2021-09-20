@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { buscarPelicula } from '../../redux/actions/moviesAction';
 import style from './navbar.module.css';
@@ -9,18 +9,18 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const buscandoPelicula = (pelicula) => dispatch( buscarPelicula(pelicula) )
   const [nombrePelicula, setNombre] = useState('');
-  
-  const peliculaEspecifica = useSelector( state => state.movies.peliculaEspecifica );
-  
+  const history = useHistory();
+
   const onSubmitPelicula = e => {
     e.preventDefault()
     buscandoPelicula(nombrePelicula)
+    history.push('/principal')
   }
 
   return (
     <div className={style.navbarContainer}>
       <div className={style.navbarLogo}>
-        <h1>OMDB</h1>
+        <Link to='/principal'><h1>OMDB</h1></Link>
       </div>
       <div className={style.navbarSearch}>
         <form onSubmit={onSubmitPelicula}>
@@ -36,7 +36,8 @@ const Navbar = () => {
         </form>
       </div>
       <div className={style.navbarAccount}>
-        <Link to='!#'> <i className="far fa-user-circle"></i> </Link>
+        <Link to='/settings'> <i className="far fa-user-circle"></i> </Link>
+        <Link to='/favorites'>Corazón</Link>
         <button><i className="fas fa-sign-out-alt"></i></button>
       </div>
     </div>

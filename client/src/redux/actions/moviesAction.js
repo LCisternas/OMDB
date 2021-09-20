@@ -1,7 +1,8 @@
 import {
   PELICULAS_DEFAULT,
   OBTENER_PELICULA_ESPECIFICA,
-  BUSCAR_PELICULA_ESPECIFICA
+  BUSCAR_PELICULA_ESPECIFICA,
+  ID_PELICULA
 } from '../types/index';
 import axiosClient from '../../config/axios';
 import axios from 'axios';
@@ -46,3 +47,15 @@ const peliculaEncontrada = (pelicula) => ({
   payload: pelicula
 })
 /* Busqueda de un titulo en especifico */
+
+/* Informacion de pelicula especifica por su ID */
+export function asigandoID(ID) {
+  return async (dispatch) => {
+    dispatch( movieID(ID) )
+  }
+}
+const movieID = ID => ({
+  type: ID_PELICULA,
+  payload: ID
+})
+/* Informacion de pelicula especifica por su ID */

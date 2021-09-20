@@ -47,3 +47,65 @@
   height: 60%;
   width: 80%;
 }
+.movieDataContainer {
+  height: 100vh;
+  background: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+.movieDataNavbar {
+  height: 10%;
+}
+.movieGeneralData {
+  height: 90%;
+  display: flex;
+}
+.moviePoster {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.moviePoster img {
+  height: 90%;
+}
+.movieInfo {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.movieTitle {
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.movieTitle h1 {
+  font-size: 40px;
+}
+.movieTitle span {
+  font-weight: 600;
+  margin: 10px 0px;
+  font-size: 20px;
+}
+.movieDescription {
+  height: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 21px;
+  margin: 0px 120px;
+}
+.movieDetails {
+  height: 20%;
+  display: flex;
+}
+.movieDetails span {
+  margin: 0px 10px;
+  font-weight: 600;
+}

@@ -1,12 +1,14 @@
 import { 
   PELICULAS_DEFAULT,
   OBTENER_PELICULA_ESPECIFICA,
-  BUSCAR_PELICULA_ESPECIFICA
+  BUSCAR_PELICULA_ESPECIFICA,
+  ID_PELICULA
 } from '../types/index';
 
 const initialState = {
   peliculas: [],
   peliculaEspecifica: '',
+  idPelicula: ''
 };
 // eslint-disable-next-line
 export default function(state = initialState, action) {
@@ -25,6 +27,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         peliculas: action.payload
+      }
+    case ID_PELICULA:
+      return {
+        ...state,
+        idPelicula: action.payload
       }  
     default:
       return state
