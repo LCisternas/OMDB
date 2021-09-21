@@ -31,7 +31,7 @@ const MovieInfo = () => {
       </div>
       <div className={style.movieGeneralData}>
         <div className={style.moviePoster}>
-          <img src={Poster} />
+          <img src={Poster} alt='movie poster' />
         </div>
         <div className={style.movieInfo}>
           <div className={style.movieTitle}>

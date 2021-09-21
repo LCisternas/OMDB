@@ -11,7 +11,7 @@ const Movies = () => {
   const dispatch = useDispatch();
   const enviarPelicula = (pelicula) => dispatch( busquedaExitosa(pelicula) )
   const peliculaEspecificada = useSelector( state => state.movies.peliculaEspecifica )
-
+  
   useEffect(() => {
     if(peliculaEspecificada !== '') {
       const buscarPelicula = async () => {
@@ -28,6 +28,7 @@ const Movies = () => {
       const cargarPeliculas = () => dispatch( cargaDePeliculasDefault() );
       cargarPeliculas()
     }
+    // eslint-disable-next-line
   }, [peliculaEspecificada])
 
   const listadoPeliculas = useSelector( state => state.movies.peliculas )

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React from 'react';
+import { useHistory, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { asigandoID } from '../../redux/actions/moviesAction';
 import style from './movies.module.css';
@@ -23,7 +23,8 @@ const SingularMovie = ({ oneMovie }) => {
         <h1>{Title} <span>{Year}</span></h1>
       </div>
       <div className={style.singularImg}>
-        <a onClick={() => redireccion(Title)}><img src={Poster} /></a>
+        {/* eslint-disable-next-line */}
+        <a onClick={() => redireccion(Title)}><img src={Poster} alt='movie poster' /></a>
       </div>
       <div className={style.singularOptions}>
         <button

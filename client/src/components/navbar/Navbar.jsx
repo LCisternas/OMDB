@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { buscarPelicula } from '../../redux/actions/moviesAction';
 import style from './navbar.module.css';
 
@@ -37,7 +37,7 @@ const Navbar = () => {
       </div>
       <div className={style.navbarAccount}>
         <Link to='/settings'> <i className="far fa-user-circle"></i> </Link>
-        <Link to='/favorites'>Corazón</Link>
+        <Link to='/favorites'><i className="fas fa-heart"></i></Link>
         <button><i className="fas fa-sign-out-alt"></i></button>
       </div>
     </div>

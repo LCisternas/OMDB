@@ -26,7 +26,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-size: 15px;
+  font-size: 13px;
 }
 .singularImg {
   height: 80%;
@@ -36,6 +36,9 @@
 }
 .singularImg img {
   height: 100%;
+}
+.singularImg a {
+  cursor: pointer;
 }
 .singularOptions {
   height: 10%;
@@ -96,10 +99,10 @@
 .movieDescription {
   height: 60%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   font-size: 21px;
-  margin: 0px 120px;
+  margin: 0px 200px;
 }
 .movieDetails {
   height: 20%;
