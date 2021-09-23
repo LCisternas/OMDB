@@ -4,7 +4,6 @@ import {
   BUSCAR_PELICULA_ESPECIFICA,
   ID_PELICULA
 } from '../types/index';
-import axiosClient from '../../config/axios';
 import axios from 'axios';
 
 /* Carga de peliculas inicial */

@@ -1,46 +1,98 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import style from './register.module.css';
+import Swal from 'sweetalert2';
 
 const Register = () => {
+
+  const [registerData, setRegisterData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirm: ''
+  })
+
+  const onChange = e => {
+    setRegisterData({
+      ...registerData,
+      [e.target.name]:e.target.value
+    })
+  }
+
+  const { name, email, password, confirm } = registerData
+
+  const onSubmit = e => {
+    e.preventDefault()
+    if(name === '' || email === '' || password === '' || confirm === '') {
+      Swal.fire({
+        icon: 'error',
+        title: 'You forget something',
+        text: 'All fields must be complete'
+      })
+    }
+    if(password.length < 6) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Safety is important!',
+        text: 'Please register a password with a minimum of 6 characters'
+      })
+    }
+    if(password !== confirm) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Mhm...',
+        text: 'Passwords must be the same'
+      })
+    }
+    
+  }
+
   return (
     <div className={style.registerContainer}>
-        <form>
+        <form onSubmit={onSubmit}>
           <div className={style.registerTitle}>
-            <h2>Registrate</h2>
+            <h2>Register</h2>
           </div>
           <div className={style.registerInput}>
-            <label>Nombre</label>
+            <label>Name</label>
             <input 
               type='text'
+              name='name'
+              value={registerData.name}
+              onChange={onChange}
             />
           </div>
           <div className={style.registerInput}>
-            <label>Apellido</label>
+            <label>Email</label>
             <input 
               type='text'
+              name='email'
+              value={registerData.email}
+              onChange={onChange}
             />
           </div>
           <div className={style.registerInput}>
-            <label>Correo electronico</label>
-            <input 
-              type='text'
-            />
-          </div>
-          <div className={style.registerInput}>
-            <label>Contraseña</label>
+            <label>Password</label>
             <input 
               type='password'
+              name='password'
+              value={registerData.password}
+              onChange={onChange}
             />
           </div>
           <div className={style.registerInput}>
-            <label>Confirma la contraseña</label>
+            <label>Confirm password</label>
             <input 
               type='password'
+              name='confirm'
+              value={registerData.confirm}
+              onChange={onChange}
             />
           </div>
           <div className={style.registerButton}>
-            <button>Registrarse</button>
+            <button
+              type='submit'
+            >Registrarse</button>
             <Link to='/'>¿Ya tienes una cuenta? Haz click aquí</Link>
           </div>
         </form>
