@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { nuevoUsuario } from '../../redux/actions/authAction';
 import { Link } from 'react-router-dom';
 import style from './register.module.css';
 import Swal from 'sweetalert2';
@@ -19,6 +21,10 @@ const Register = () => {
     })
   }
 
+  const dispatch = useDispatch()
+  const registrando = (info) => dispatch( nuevoUsuario(info) )
+  
+
   const { name, email, password, confirm } = registerData
 
   const onSubmit = e => {
@@ -29,6 +35,7 @@ const Register = () => {
         title: 'You forget something',
         text: 'All fields must be complete'
       })
+      return;
     }
     if(password.length < 6) {
       Swal.fire({
@@ -36,6 +43,7 @@ const Register = () => {
         title: 'Safety is important!',
         text: 'Please register a password with a minimum of 6 characters'
       })
+      return;
     }
     if(password !== confirm) {
       Swal.fire({
@@ -43,8 +51,9 @@ const Register = () => {
         title: 'Mhm...',
         text: 'Passwords must be the same'
       })
+      return;
     }
-    
+    registrando(registerData)
   }
 
   return (

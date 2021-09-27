@@ -3,7 +3,7 @@ const router = express.Router();
 const { check } = require('express-validator');
 const { nuevoUsuario } = require('../controllers/usersControllers');
 
-router.post('/',
+router.post('/register',
 [
   check('name', 'Mandatory name').not().isEmpty(),
   check('email', 'Invalid Email').isEmail(),

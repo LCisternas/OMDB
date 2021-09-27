@@ -7,7 +7,7 @@ import axiosClient from '../../config/axios';
 export function nuevoUsuario( info ) {
   return async (dispatch) => {
     try {
-      const response = await axiosClient.post('/api/users', info)
+      const response = await axiosClient.post('/api/users/register', info)
       dispatch( registroExitoso(response.data) )
     } catch (error) {
       console.log(error)
