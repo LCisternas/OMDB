@@ -1,7 +1,9 @@
 import {
   REGISTRO_EXITOSO,
   OBTENER_USUARIO_EXITO,
-  OBTENER_USUARIO_FALLIDO
+  OBTENER_USUARIO_FALLIDO,
+  LOGIN_EXITOSO,
+  LOGIN_FALLIDO
 } from '../types/index';
 
 const initialState = {
@@ -14,6 +16,19 @@ const initialState = {
 // eslint-disable-next-line
 export default function(state = initialState, action) {
   switch(action.type) {
+    case LOGIN_EXITOSO:
+      localStorage.setItem('token', action.payload.token)
+      return {
+        ...state,
+        autenticado: true
+      }
+    case LOGIN_FALLIDO:
+      localStorage.removeItem('token');
+      return {
+        token: null,
+        autenticado: null,
+        user: null
+      } 
     case REGISTRO_EXITOSO:
       localStorage.setItem('token', action.payload.token)
       return {

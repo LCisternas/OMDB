@@ -23,7 +23,7 @@ const usuarioAutenticado = async (req, res) => {
     const { email, password } = req.body;
   try {
     /* Comprobacion de existencia de usuario en la BD */
-    let user = User.findOne({ email });
+    let user = await User.findOne({ email });
     if(!user) {
       return res.status(400).json({ msg: 'User not found' });
     }
@@ -46,7 +46,7 @@ const usuarioAutenticado = async (req, res) => {
       res.json({ token })
     });
   } catch (error) {
-    console.log(error)
+    console.log('error desde el controlador', error)
   }
 }
 

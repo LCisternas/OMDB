@@ -1,9 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { login, autenticacion } from '../../redux/actions/authAction';
 import style from './login.module.css';
 import Swal from 'sweetalert2';
 
 const Login = () => {
+
+  const dispatch = useDispatch();
+  const history = useHistory()
+  const auth = () => dispatch( autenticacion() ); 
+  const usuarioConfimado = useSelector( state => state.auth.autenticado );
+
+  useEffect(() => {
+    if(usuarioConfimado){
+      history.push('/principal');
+    }
+  }, [usuarioConfimado])
 
   const [user, setUser] = useState({
     email: '',
@@ -11,20 +24,26 @@ const Login = () => {
   })
 
   const { email, password } = user;
-
+  const logueando = ( info ) => dispatch( login(info) )
   const onChange = e => {
     setUser({
       ...user,
       [e.target.name]:e.target.value
     })
   }
-  const onSubmit = e => {
+  const onSubmit = async (e) => {
     e.preventDefault()
     if(email === '' || password === '') {
       Swal.fire({
         icon:'error',
         title: 'Incomplete fields'
       })
+    }
+    try {
+      await logueando({ email, password });
+      auth()
+    } catch (error) {
+      console.log(error)
     }
   }
 

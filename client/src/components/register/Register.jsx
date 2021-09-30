@@ -32,7 +32,7 @@ const Register = () => {
     if(registrado) {
       history.push('/principal')
     }
-  })
+  }, [registrado])
 
   const { name, email, password, confirm } = registerData
 
