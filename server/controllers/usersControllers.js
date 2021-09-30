@@ -25,7 +25,6 @@ const nuevoUsuario = async (req, res) => {
     user.password = await bcryptjs.hash(password, salt);
     /* Guardando nuevo usuario */
     await user.save();
-
     /* TOKEN JWT */
     const payload = {
       user: {
@@ -34,7 +33,7 @@ const nuevoUsuario = async (req, res) => {
     }
     /* Firmando el token */
     jwt.sign(payload, process.env.SECRET_WORD, {
-      expiresIn: '3d'
+      expiresIn: '1d'
     }, (error, token) => {
       if(error) throw error
       /* Si no hay error enviamos el token */
@@ -45,7 +44,6 @@ const nuevoUsuario = async (req, res) => {
     console.log(error);
     res.status(400).send('ERROR!!!')
   }
-  /* Comprabando que no exista ya una cuenta con el mismo email */
 }
 
 

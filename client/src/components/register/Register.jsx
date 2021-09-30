@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { nuevoUsuario } from '../../redux/actions/authAction';
+import { useHistory } from 'react-router-dom';
+import { nuevoUsuario, autenticacion } from '../../redux/actions/authAction';
 import { Link } from 'react-router-dom';
 import style from './register.module.css';
 import Swal from 'sweetalert2';
@@ -23,11 +24,19 @@ const Register = () => {
 
   const dispatch = useDispatch()
   const registrando = (info) => dispatch( nuevoUsuario(info) )
-  
+  const auth = () => dispatch( autenticacion() )
+  const registrado = useSelector( state => state.auth.autenticado )
+  const history = useHistory()
+
+  useEffect(() => {
+    if(registrado) {
+      history.push('/principal')
+    }
+  })
 
   const { name, email, password, confirm } = registerData
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault()
     if(name === '' || email === '' || password === '' || confirm === '') {
       Swal.fire({
@@ -53,7 +62,12 @@ const Register = () => {
       })
       return;
     }
-    registrando(registerData)
+    try {
+      await registrando({ name, email, password })
+      auth()
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
