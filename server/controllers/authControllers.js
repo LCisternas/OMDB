@@ -14,8 +14,44 @@ const usuarioCorrecto = async (req, res) => {
   }
 }
 
+const usuarioAutenticado = async (req, res) => {
+  /* Comprobacion de errores */
+  const errors = validationResult(req);
+    if(!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    const { email, password } = req.body;
+  try {
+    /* Comprobacion de existencia de usuario en la BD */
+    let user = User.findOne({ email });
+    if(!user) {
+      return res.status(400).json({ msg: 'User not found' });
+    }
+    /* Comprobacion de password correcta */
+    const rightPass = await bcryptjs.compare(password, user.password);
+    if(!rightPass) {
+      return res.status(400).json({ msg: 'Incorrect Password' })
+    }
+    /* JWT SECTION */
+    const payload = {
+      user: {
+        id: user.id
+      }
+    }
+    /* Firmando el token */
+    jwt.sign(payload, process.env.SECRET_WORD, {
+      expiresIn: '1d'
+    }, (error, token) => {
+      if(error) throw error;
+      res.json({ token })
+    });
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 
 module.exports = {
-  usuarioCorrecto
+  usuarioCorrecto,
+  usuarioAutenticado
 }
