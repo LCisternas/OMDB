@@ -3,7 +3,8 @@ import {
   OBTENER_USUARIO_EXITO,
   OBTENER_USUARIO_FALLIDO,
   LOGIN_EXITOSO,
-  LOGIN_FALLIDO
+  LOGIN_FALLIDO,
+  CERRAR_SESION
 } from '../types/index';
 import axiosClient from '../../config/axios';
 import tokenAuth from '../../config/tokenAuth';
@@ -80,10 +81,13 @@ const loginFallido = () => ({
 export function logout() {
   return async (dispatch) => {
     try {
-      
+      dispatch( cerrarSesion() )
     } catch (error) {
-      
+      console.log(error)
     }
   }
 }
+const cerrarSesion = () => ({
+  type: CERRAR_SESION
+})
 /* Cerrar sesión usuario */
