@@ -47,8 +47,19 @@
   align-items: center;
 }
 .singularOptions button {
-  height: 60%;
+  height: 70%;
   width: 80%;
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+.singularOptions button:hover {
+  background-color: red;
+  border: 2px solid red;
+  cursor: pointer;
 }
 .movieDataContainer {
   height: 100vh;

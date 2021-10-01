@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { asigandoID } from '../../redux/actions/moviesAction';
 import style from './movies.module.css';
@@ -27,8 +27,11 @@ const SingularMovie = ({ oneMovie }) => {
         <a onClick={() => redireccion(Title)}><img src={Poster} alt='movie poster' /></a>
       </div>
       <div className={style.singularOptions}>
+        <form>
         <button
+          type='submit'
         >Agregar a favoritos</button>
+        </form>
       </div>
     </div>
   );
