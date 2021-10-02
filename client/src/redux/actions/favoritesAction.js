@@ -1,27 +1,41 @@
 import {
-  AGREGAR_PELICULA,
+  MIS_PELICULAS,
   QUITAR_PELICULA
 } from '../types/index';
 import axiosClient from '../../config/axios';
 
-/* Agregar una pelicula a favoritos */
+/* Agregar pelicula favorita a base de datos */
 export function peliculaFavorita( info ) {
   return async (dispatch) => {
     try {
-      const response = await axiosClient.post('/api/favorites')
-      console.log(response)
-      dispatch( agregarPelicula( response.data ) )
+      const response = await axiosClient.post('/api/favorites', info)
+      // console.log(response.data.newFavMovie)
+      // dispatch( agregarPelicula( response.data.newFavMovie ) )
     } catch (error) {
       console.log(error)
-      dispatch( quitarPelicula() )
     }
   }
 }
-const agregarPelicula = ( info ) => ({
-  type: AGREGAR_PELICULA,
+// const agregarPelicula = ( info ) => ({
+//   type: AGREGAR_PELICULA,
+//   payload: info
+// })
+/* Agregar pelicula favorita a base de datos */
+
+/* Obtener todas las peliculas favoritas del usuario */
+export function misFavoritas() {
+  return async (dispatch) => {
+    try {
+      const response = await axiosClient.get('/api/favorites')
+      // console.log(response.data.listaPeliculas)
+      dispatch( todasMisFavoritas(response.data.listaPeliculas) )
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+const todasMisFavoritas = ( info ) => ({
+  type: MIS_PELICULAS,
   payload: info
 })
-const quitarPelicula = () => ({
-  type: QUITAR_PELICULA
-})
-/* Agregar una pelicula a favoritos */
+/* Obtener todas las peliculas favoritas del usuario */

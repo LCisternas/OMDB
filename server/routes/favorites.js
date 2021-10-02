@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-router.post('/')
+const { agregarPelicula, obtenerPeliculas } = require('../controllers/favoritesControllers');
+
+router.post('/', agregarPelicula);
+router.get('/', obtenerPeliculas);
 
 module.exports = router;

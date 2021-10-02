@@ -9,7 +9,7 @@ const Login = () => {
 
   const dispatch = useDispatch();
   const history = useHistory()
-  const auth = () => dispatch( autenticacion() ); 
+  const auth = () => dispatch( autenticacion() );
   const usuarioConfimado = useSelector( state => state.auth.autenticado );
 
   useEffect(() => {

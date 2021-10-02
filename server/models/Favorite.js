@@ -8,9 +8,11 @@ const FavoriteSchema = mongoose.Schema({
   poster: {
     type: String
   },
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+  movieID: {
+    type: String
+  },
+  user_id: {
+    type: String
   }
 
 })
