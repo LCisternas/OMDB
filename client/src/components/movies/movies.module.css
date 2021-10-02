@@ -72,7 +72,7 @@
   border-radius: 5px;
   font-size: 14px;
 }
-.singularOptions button:hover {
+.noHeartButton:hover {
   background-color: red;
   border: 2px solid red;
   cursor: pointer;

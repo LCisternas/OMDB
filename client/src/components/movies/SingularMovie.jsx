@@ -55,7 +55,7 @@ const SingularMovie = ({ oneMovie }) => {
       </div>
       <div className={style.singularOptions}>
         <form onSubmit={onSubmit}>
-        {favorite ? <button className={style.heartButton}
+        {favorite ? <button disabled className={style.heartButton}
         > <i className="fas fa-heart"></i> </button>
         : <button className={style.noHeartButton} type='submit'> <i className="far fa-heart"></i> </button>}
         </form>
