@@ -59,7 +59,6 @@ export function login( info ) {
   return async (dispatch) => {
     try {
       const response = await axiosClient.post('/api/auth', info);
-      console.log(response.data)
       dispatch( loginExitoso( response.data ) )
     } catch (error) {
       console.log(error);

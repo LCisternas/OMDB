@@ -6,5 +6,48 @@
   height: 10%;
 }
 .favoritesContent {
+  border-top: 2px solid red;
+  color: white;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.favMovieContainer {
+  display: flex;
+  justify-content: space-between;
+  height: 200px;
+  width: 60%;
+  margin: 20px 0px;
+}
+.favMovieInfo {
+  display: flex;
+  align-items: center;
+}
+.favMovieInfo img {
+  height: 100%;
+  margin: 0px 10px;
+}
+.favMovieInfo h1 {
+  margin: 0px 10px;
+}
+.favMovieActions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 15px;
+}
+.favMovieActions button {
+  font-size: 30px;
+  background-color: transparent;
+  color: red;
+  border: 2px solid red;
+  padding: 15px;
+  border-radius: 5px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.favMovieActions button:hover {
+  background-color: red;
   color: white;
 }

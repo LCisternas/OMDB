@@ -38,8 +38,6 @@ const SingularMovie = ({ oneMovie }) => {
     }
   }
 
-  var variable = true
-
   useEffect(() => {
     distincionPeliculas(favMovies, imdbID);
   }, [favMovies])

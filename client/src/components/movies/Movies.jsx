@@ -14,6 +14,7 @@ const Movies = () => {
   const cargarPeliculas = () => dispatch( cargaDePeliculasDefault() );
   const misPeliculas = () => dispatch( misFavoritas() )
   const peliculaEspecificada = useSelector( state => state.movies.peliculaEspecifica )
+  const auth = useSelector( state => state.auth.autenticado )
   
   useEffect(() => {
     if(peliculaEspecificada !== '') {
@@ -28,15 +29,17 @@ const Movies = () => {
       buscarPelicula()
     }
     if(peliculaEspecificada === '') {
-      const cargaDefault = async () => {
-        try {
-          await cargarPeliculas()
-          misPeliculas()
-        } catch (error) {
-          console.log(error)
+      if(auth) {
+        const cargaDefault = async () => {
+          try {
+            await cargarPeliculas()
+            misPeliculas()
+          } catch (error) {
+            console.log(error)
+          }
         }
+        cargaDefault()
       }
-      cargaDefault()
     }
     // eslint-disable-next-line
   }, [peliculaEspecificada])

@@ -29,7 +29,6 @@ export default function(state = initialState, action) {
       localStorage.setItem('token', action.payload.token)
       return {
         ...state,
-        autenticado: true
       }
     case LOGIN_FALLIDO:
       localStorage.removeItem('token');
