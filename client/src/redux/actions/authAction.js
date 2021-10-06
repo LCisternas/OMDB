@@ -37,7 +37,6 @@ export function autenticacion() {
     }
     try {
       const response = await axiosClient.get('/api/auth');
-      console.log(response.data)
       dispatch( obtenerUsuarioExitoso( response.data ) );
     } catch (error) {
       console.log(error);

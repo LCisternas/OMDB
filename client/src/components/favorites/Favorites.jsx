@@ -8,8 +8,6 @@ const Favorites = () => {
 
   const misPeliculas = useSelector( state => state.favorites.favoritesMovies );
 
-  console.log(misPeliculas)
-
   return (
     <div className={style.favoritesContainer}>
       <div className={style.favoritesNavbar}>

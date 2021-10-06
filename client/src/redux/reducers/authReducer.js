@@ -10,7 +10,9 @@ import {
 const initialState = {
   token: localStorage.getItem('token'),
   autenticado: null,
-  user: null,
+  user: {user:{
+    _id: null
+  }},
   msg: null,
   charching: null
 }
@@ -23,7 +25,9 @@ export default function(state = initialState, action) {
         ...state,
         token: null,
         autenticado: null,
-        user: null
+        user: {user:{
+          _id: null
+        }}
       }
     case LOGIN_EXITOSO:
       localStorage.setItem('token', action.payload.token)

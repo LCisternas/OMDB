@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { buscarPelicula } from '../../redux/actions/moviesAction';
 import { logout } from '../../redux/actions/authAction';
+import { misFavoritas, logoutMovies } from '../../redux/actions/favoritesAction';
 import Swal from 'sweetalert2';
 import style from './navbar.module.css';
 
@@ -10,7 +11,10 @@ const Navbar = () => {
 
   const dispatch = useDispatch();
   const buscandoPelicula = (pelicula) => dispatch( buscarPelicula(pelicula) )
+  const misPeliculas = (info) => dispatch( misFavoritas(info) )
+  const user_id = useSelector( state => state.auth.user.user._id )
   const cerrarSesion = () => dispatch( logout() )
+  const cerrarSesionMovies = () => dispatch( logoutMovies() )
   const [nombrePelicula, setNombre] = useState('');
   const history = useHistory();
 
@@ -27,9 +31,14 @@ const Navbar = () => {
     }).then((result) => {
       if(result.isConfirmed) {
         cerrarSesion()
+        logoutMovies()
         history.push('/')
       }
     })
+  }
+
+  const consultandoPeliculas = () => {
+    misPeliculas(user_id)
   }
 
   return (
@@ -52,7 +61,9 @@ const Navbar = () => {
       </div>
       <div className={style.navbarAccount}>
         <Link to='/settings'><i className="far fa-user-circle"></i> </Link>
-        <Link to='/favorites'><i className="fas fa-heart"></i></Link>
+        <Link to='/favorites'
+          onClick={() => consultandoPeliculas()}
+        ><i className="fas fa-heart"></i></Link>
         <button
           type='button'
           onClick={() => confirmarLogOut()}

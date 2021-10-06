@@ -3,7 +3,6 @@ import style from './movies.module.css';
 import Navbar from '../navbar/Navbar';
 import { useDispatch, useSelector } from 'react-redux';
 import { cargaDePeliculasDefault, busquedaExitosa } from '../../redux/actions/moviesAction'
-import { misFavoritas } from '../../redux/actions/favoritesAction';
 import SingularMovie from './SingularMovie';
 import axios from 'axios';
 
@@ -12,10 +11,9 @@ const Movies = () => {
   const dispatch = useDispatch();
   const enviarPelicula = (pelicula) => dispatch( busquedaExitosa(pelicula) )
   const cargarPeliculas = () => dispatch( cargaDePeliculasDefault() );
-  const misPeliculas = () => dispatch( misFavoritas() )
   const peliculaEspecificada = useSelector( state => state.movies.peliculaEspecifica )
   const auth = useSelector( state => state.auth.autenticado )
-  
+
   useEffect(() => {
     if(peliculaEspecificada !== '') {
       const buscarPelicula = async () => {
@@ -33,7 +31,6 @@ const Movies = () => {
         const cargaDefault = async () => {
           try {
             await cargarPeliculas()
-            misPeliculas()
           } catch (error) {
             console.log(error)
           }

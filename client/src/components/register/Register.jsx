@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { nuevoUsuario, autenticacion } from '../../redux/actions/authAction';
+import { misFavoritas } from '../../redux/actions/favoritesAction';
 import { Link } from 'react-router-dom';
 import style from './register.module.css';
 import Swal from 'sweetalert2';
@@ -24,13 +25,16 @@ const Register = () => {
 
   const dispatch = useDispatch()
   const registrando = (info) => dispatch( nuevoUsuario(info) )
+  const misPeliculas = (info) => dispatch( misFavoritas(info) ) 
   const auth = () => dispatch( autenticacion() )
   const registrado = useSelector( state => state.auth.autenticado )
+  const id_user = useSelector( state => state.auth.user.user._id )
   const history = useHistory()
 
   useEffect(() => {
     if(registrado) {
       history.push('/principal')
+      misPeliculas()
     }
   }, [registrado])
 

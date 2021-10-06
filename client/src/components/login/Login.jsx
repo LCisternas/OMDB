@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login, autenticacion } from '../../redux/actions/authAction';
+import { misFavoritas } from '../../redux/actions/favoritesAction';
 import style from './login.module.css';
 import Swal from 'sweetalert2';
 
@@ -10,11 +11,14 @@ const Login = () => {
   const dispatch = useDispatch();
   const history = useHistory()
   const auth = () => dispatch( autenticacion() );
+  const misPeliculas = (info) => dispatch( misFavoritas(info) )
   const usuarioConfimado = useSelector( state => state.auth.autenticado );
+  const user_id = useSelector( state => state.auth.user.user._id )
 
   useEffect(() => {
     if(usuarioConfimado){
       history.push('/principal');
+      misPeliculas(user_id)
     }
   }, [usuarioConfimado])
 

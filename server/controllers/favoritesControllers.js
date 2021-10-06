@@ -6,7 +6,7 @@ const agregarPelicula = async (req, res) => {
   const { Title, Poster, imdbID, userID } = req.body;
 
   try {
-    const newFavMovie = new Favorite({
+    const newFavMovie = await new Favorite({
       title: Title,
       poster: Poster,
       movieID: imdbID,
@@ -22,15 +22,14 @@ const agregarPelicula = async (req, res) => {
 
 const obtenerPeliculas = async (req, res) => {
 
-  const { userID } = req.body
-
   try {
-    const listaPeliculas = await Favorite.find({ userID });
+    const listaPeliculas = await Favorite.find({user_id: req.query.info})
     res.json({ listaPeliculas })
   } catch (error) {
     console.log(error)
-    res.status(500).send('ERROR!!!')
+    res.status(500)
   }
+
 }
 
 module.exports = {

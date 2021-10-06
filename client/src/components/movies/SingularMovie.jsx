@@ -14,18 +14,22 @@ const SingularMovie = ({ oneMovie }) => {
 
   const dispatch = useDispatch();
   const setID = (movieID) => dispatch( asigandoID(movieID) )
+  const misPeliculas = (info) => dispatch( misFavoritas(info) )
 
   const redireccion = (title) => {
     history.push(`/viewmovie/${title}`)
     setID(imdbID)
   }
   const agregarPelicula = (info) => dispatch( peliculaFavorita(info) )
-  const misPeliculas = () => dispatch( misFavoritas() )
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault()
-    agregarPelicula({ Title, Poster, imdbID, userID })
-    misPeliculas()
+    try {
+      await agregarPelicula({ Title, Poster, imdbID, userID })
+      misPeliculas(userID)
+    } catch (error) {
+      
+    }
   }
 
   const [favorite, setFavorite] = useState(false)
@@ -55,7 +59,8 @@ const SingularMovie = ({ oneMovie }) => {
         <form onSubmit={onSubmit}>
         {favorite ? <button disabled className={style.heartButton}
         > <i className="fas fa-heart"></i> </button>
-        : <button className={style.noHeartButton} type='submit'> <i className="far fa-heart"></i> </button>}
+        : <button
+          className={style.noHeartButton} type='submit'> <i className="far fa-heart"></i> </button>}
         </form>
       </div>
     </div>
