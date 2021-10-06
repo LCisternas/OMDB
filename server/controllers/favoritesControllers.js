@@ -21,7 +21,6 @@ const agregarPelicula = async (req, res) => {
 }
 
 const obtenerPeliculas = async (req, res) => {
-
   try {
     const listaPeliculas = await Favorite.find({user_id: req.query.info})
     res.json({ listaPeliculas })
@@ -29,10 +28,19 @@ const obtenerPeliculas = async (req, res) => {
     console.log(error)
     res.status(500)
   }
+}
 
+const eliminarPelicula = async (req, res) => {
+  try {
+    const movie = await Favorite.findOneAndRemove({movieID: req.query.info})
+    res.json({ movie: movie })
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 module.exports = {
   agregarPelicula,
-  obtenerPeliculas
+  obtenerPeliculas,
+  eliminarPelicula
 }

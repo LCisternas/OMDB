@@ -1,7 +1,8 @@
 import {
   MIS_PELICULAS,
   PELICULA_AGREGADA,
-  QUITANDO_MOVIES
+  QUITANDO_MOVIES,
+  QUITAR_PELICULA
 } from '../types/index';
 
 const initialState = {
@@ -11,6 +12,12 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch(action.type) {
+    case QUITAR_PELICULA: {
+      return {
+        ...state,
+        favoritesMovies: state.favoritesMovies.filter(movie => movie.movieID !== action.payload.movieID)
+      }
+    }
     case QUITANDO_MOVIES:
       return {
         ...state,

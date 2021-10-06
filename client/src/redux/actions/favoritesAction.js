@@ -55,3 +55,21 @@ const elimandoEstadoRedux = () => ({
   type: QUITANDO_MOVIES,
 })
 /* Borrando esta de peliculas de Redux */
+
+/* Eliminar pelicula de la base de datos */
+export function eliminandoPelicula(info) {
+  return async (dispatch) => {
+    try {
+      const response = await axiosClient.delete('/api/favorites', { params: { info } })
+      console.log(response.data.movie)
+      dispatch( peliculaEliminada(response.data.movie) )
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+const peliculaEliminada = (info) => ({
+  type: QUITAR_PELICULA,
+  payload: info
+})
+/* Eliminar pelicula de la base de datos */
