@@ -89,3 +89,24 @@ const cerrarSesion = () => ({
   type: CERRAR_SESION
 })
 /* Cerrar sesión usuario */
+
+/* Actualizar email de usuario */
+export function actualizarEmail( info ) {
+  return async (dispatch) => {
+    try {
+      const response = await axiosClient.put('/api/auth', info)
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+/* Actualizar email de usuario */
+
+/* Actualizar contraseña de usuario */
+
+/* Actualizar contraseña de usuario */
+
+/* Eliminar cuenta de usuario */
+
+/* Eliminar cuenta de usuario */

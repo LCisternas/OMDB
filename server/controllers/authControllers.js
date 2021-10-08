@@ -50,8 +50,27 @@ const usuarioAutenticado = async (req, res) => {
   }
 }
 
+const actualizarEmail = async (req, res) => {
+
+  const { Email, userID } = req.body;
+
+  try {
+    let user = await User.findById(userID);
+    const newEmail = {};
+    newEmail.email = Email;
+    user = await User.findOneAndUpdate(
+      {_id: userID},
+      newEmail,
+      {new: true}
+    )
+    res.status(200).json({ user })
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 module.exports = {
   usuarioCorrecto,
-  usuarioAutenticado
+  usuarioAutenticado,
+  actualizarEmail
 }
