@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Navbar from '../navbar/Navbar';
-import { actualizarEmail, autenticacion } from '../../redux/actions/authAction';
+import { actualizarEmail, autenticacion, actualizarContraseña } from '../../redux/actions/authAction';
 import Swal from 'sweetalert2';
 import style from './account.module.css';
 
@@ -14,11 +14,14 @@ const Account = () => {
   const dispatch = useDispatch();
   const updateEmail = (info) => dispatch( actualizarEmail(info) )
   const auth = () => dispatch( autenticacion() )
+  const updatePassword = (info) => dispatch( actualizarContraseña(info) )
 
   const [newEmail, setEmail] = useState({
     Email: ''
   });
-  const [newPassword, setPassword] = useState('');
+  const [newPassword, setPassword] = useState({
+    Password: ''
+  });
   const [goauth, setgoauth] = useState(false);
 
   const onChangeEmail = e => {
@@ -26,9 +29,16 @@ const Account = () => {
       ...newEmail,
       [e.target.name]:e.target.value
     })
-  } 
+  }
+  const onChangePassword = e => {
+    setPassword({
+      ...newPassword,
+      [e.target.name]:e.target.value
+    })
+  }
 
   const { Email } = newEmail;
+  const { Password } = newPassword;
 
   const changeEmail = e => {
     e.preventDefault()
@@ -43,6 +53,21 @@ const Account = () => {
     Swal.fire({
       icon: 'success',
       title: 'Updated email address'
+    })
+  }
+  const changePassword = e => {
+    e.preventDefault()
+    if(newPassword.Password === '') {
+      Swal.fire({
+        icon: 'error',
+        title: 'You must enter a valid password'
+      })
+    }
+    updatePassword({ Password, userID })
+    setgoauth(true)
+    Swal.fire({
+      icon: 'success',
+      title: 'Update password successfully'
     })
   }
   
@@ -76,15 +101,18 @@ const Account = () => {
               placeholder='New Email'
               onChange={onChangeEmail}
             />
-            <button>Cambiar Email</button>
+            <button type='submit'>Cambiar Email</button>
           </form>
-          <form>
+          <form onSubmit={changePassword}>
             <input 
               type='password'
-              name='password'
+              name='Password'
+              min='6'
+              value={Password}
               placeholder='New password'
+              onChange={onChangePassword}
             />
-            <button>Cambiar contraseña</button>
+            <button type='submit'>Cambiar contraseña</button>
           </form>
           <form>
             <button>Eliminar cuenta</button>

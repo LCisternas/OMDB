@@ -104,7 +104,16 @@ export function actualizarEmail( info ) {
 /* Actualizar email de usuario */
 
 /* Actualizar contraseña de usuario */
-
+export function actualizarContraseña(info) {
+  return async (dispatch) => {
+    try {
+      const response = await axiosClient.put('/api/auth/pass', info)
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
 /* Actualizar contraseña de usuario */
 
 /* Eliminar cuenta de usuario */

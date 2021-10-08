@@ -51,9 +51,7 @@ const usuarioAutenticado = async (req, res) => {
 }
 
 const actualizarEmail = async (req, res) => {
-
   const { Email, userID } = req.body;
-
   try {
     let user = await User.findById(userID);
     const newEmail = {};
@@ -69,8 +67,27 @@ const actualizarEmail = async (req, res) => {
   }
 }
 
+const actualizarContraseña = async (req, res) => {
+  const { Password, userID } = req.body;
+  try {
+    let user = await User.findById(userID);
+    const newPassword = {};
+    const salt = await bcryptjs.genSalt(10);
+    newPassword.password = await bcryptjs.hash(Password, salt);
+    user = await User.findOneAndUpdate(
+      {_id: userID},
+      newPassword,
+      {new: true}
+    )
+    res.status(200).json({ user })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 module.exports = {
   usuarioCorrecto,
   usuarioAutenticado,
-  actualizarEmail
+  actualizarEmail,
+  actualizarContraseña
 }
