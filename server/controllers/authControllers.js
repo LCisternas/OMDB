@@ -85,9 +85,21 @@ const actualizarContraseña = async (req, res) => {
   }
 }
 
+const eliminarCuenta = async (req, res) => {
+  try {
+    await User.findOneAndRemove(
+      { email: req.query.info }
+    )
+    res.json({ msg: 'delete' })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 module.exports = {
   usuarioCorrecto,
   usuarioAutenticado,
   actualizarEmail,
-  actualizarContraseña
+  actualizarContraseña,
+  eliminarCuenta
 }

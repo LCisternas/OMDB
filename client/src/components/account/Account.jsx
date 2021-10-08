@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import Navbar from '../navbar/Navbar';
-import { actualizarEmail, autenticacion, actualizarContraseña } from '../../redux/actions/authAction';
+import { actualizarEmail, autenticacion, actualizarContraseña, eliminarCuenta } from '../../redux/actions/authAction';
 import Swal from 'sweetalert2';
 import style from './account.module.css';
 
@@ -15,6 +16,7 @@ const Account = () => {
   const updateEmail = (info) => dispatch( actualizarEmail(info) )
   const auth = () => dispatch( autenticacion() )
   const updatePassword = (info) => dispatch( actualizarContraseña(info) )
+  const deleteAccount = (info) => dispatch( eliminarCuenta(info) )
 
   const [newEmail, setEmail] = useState({
     Email: ''
@@ -70,6 +72,20 @@ const Account = () => {
       title: 'Update password successfully'
     })
   }
+
+  const history = useHistory();
+  const killAccount = () => {
+    Swal.fire({
+      title: 'Are you sure you want to permanently delete your account?',
+      confirmButtonText: 'Yes',
+      showCancelButton: true
+    }).then((result) => {
+      if(result.isConfirmed) {
+        deleteAccount(email)
+        history.push('/')
+      }
+    })
+  }
   
   useEffect(() => {
     if(goauth) {
@@ -114,9 +130,9 @@ const Account = () => {
             />
             <button type='submit'>Cambiar contraseña</button>
           </form>
-          <form>
-            <button>Eliminar cuenta</button>
-          </form>
+          
+          <button onClick={() => killAccount()} type='button'>Eliminar cuenta</button>
+          
         </div>
       </div>
     </div>

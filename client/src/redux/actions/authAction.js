@@ -4,7 +4,8 @@ import {
   OBTENER_USUARIO_FALLIDO,
   LOGIN_EXITOSO,
   LOGIN_FALLIDO,
-  CERRAR_SESION
+  CERRAR_SESION,
+  ELIMINAR_CUENTA
 } from '../types/index';
 import axiosClient from '../../config/axios';
 import tokenAuth from '../../config/tokenAuth';
@@ -117,5 +118,18 @@ export function actualizarContraseña(info) {
 /* Actualizar contraseña de usuario */
 
 /* Eliminar cuenta de usuario */
-
+export function eliminarCuenta(info) {
+  return async (dispatch) => {
+    try {
+      const response = await axiosClient.delete('/api/auth', {params: { info }})
+      console.log(response)
+      dispatch( borrarDatos() )
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+const borrarDatos = () => ({
+  type: ELIMINAR_CUENTA
+})
 /* Eliminar cuenta de usuario */

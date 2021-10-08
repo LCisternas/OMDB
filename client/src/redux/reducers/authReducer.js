@@ -4,7 +4,8 @@ import {
   OBTENER_USUARIO_FALLIDO,
   LOGIN_EXITOSO,
   LOGIN_FALLIDO,
-  CERRAR_SESION
+  CERRAR_SESION,
+  ELIMINAR_CUENTA
 } from '../types/index';
 
 const initialState = {
@@ -19,6 +20,16 @@ const initialState = {
 // eslint-disable-next-line
 export default function(state = initialState, action) {
   switch(action.type) {
+    case ELIMINAR_CUENTA:
+      localStorage.removeItem('token')
+      return {
+        ...state,
+        token: null,
+        autenticado: null,
+        user: {user:{
+          _id: null
+        }}
+      }
     case CERRAR_SESION:
       localStorage.removeItem('token')
       return {
