@@ -86,12 +86,13 @@ const Account = () => {
       }
     })
   }
-  
+
   useEffect(() => {
     if(goauth) {
       auth()
       setgoauth(false)
     }
+  // eslint-disable-next-line
   }, [goauth])
 
   if(!username) return null;

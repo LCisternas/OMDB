@@ -28,7 +28,6 @@ const Register = () => {
   const misPeliculas = (info) => dispatch( misFavoritas(info) ) 
   const auth = () => dispatch( autenticacion() )
   const registrado = useSelector( state => state.auth.autenticado )
-  const id_user = useSelector( state => state.auth.user.user._id )
   const history = useHistory()
 
   useEffect(() => {
@@ -36,6 +35,7 @@ const Register = () => {
       history.push('/principal')
       misPeliculas()
     }
+    // eslint-disable-next-line
   }, [registrado])
 
   const { name, email, password, confirm } = registerData

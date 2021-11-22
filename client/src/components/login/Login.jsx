@@ -20,6 +20,7 @@ const Login = () => {
       history.push('/principal');
       misPeliculas(user_id)
     }
+    // eslint-disable-next-line
   }, [usuarioConfimado])
 
   const [user, setUser] = useState({

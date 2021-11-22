@@ -14,7 +14,6 @@ const Navbar = () => {
   const misPeliculas = (info) => dispatch( misFavoritas(info) )
   const user_id = useSelector( state => state.auth.user.user._id )
   const cerrarSesion = () => dispatch( logout() )
-  const cerrarSesionMovies = () => dispatch( logoutMovies() )
   const [nombrePelicula, setNombre] = useState('');
   const history = useHistory();
 

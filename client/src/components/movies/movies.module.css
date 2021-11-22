@@ -5,6 +5,11 @@
 .principalNavbar {
   height: 10%;
 }
+@media all and (max-width: 767px) {
+  .principalNavbar {
+    height: 25%;
+  }
+}
 .principalMovies {
   color: white;
   display: flex;
@@ -36,6 +41,16 @@
 }
 .singularImg img {
   height: 100%;
+}
+@media all and (max-width: 300px) {
+  .singularImg img {
+    width: 80%;
+  }
+  .singularMovie a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 .singularImg a {
   cursor: pointer;

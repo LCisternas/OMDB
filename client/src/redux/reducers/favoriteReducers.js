@@ -9,7 +9,7 @@ const initialState = {
   favoritesMovies : [],
   peliculaAgregada: null
 }
-
+// eslint-disable-next-line
 export default function(state = initialState, action) {
   switch(action.type) {
     case QUITAR_PELICULA: {

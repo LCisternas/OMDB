@@ -44,6 +44,7 @@ const SingularMovie = ({ oneMovie }) => {
 
   useEffect(() => {
     distincionPeliculas(favMovies, imdbID);
+    // eslint-disable-next-line
   }, [favMovies])
 
   return (

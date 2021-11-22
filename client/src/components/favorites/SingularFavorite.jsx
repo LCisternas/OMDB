@@ -27,7 +27,7 @@ const SingularFavorite = ({ movie }) => {
   return (
     <div className={style.favMovieContainer}>
       <div className={style.favMovieInfo}>
-        <img src={poster} />
+        <img src={poster} alt="movie poster" />
         <h1>{ title }</h1>
       </div>
       <div className={style.favMovieActions}>
